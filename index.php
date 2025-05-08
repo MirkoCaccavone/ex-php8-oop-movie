@@ -1,31 +1,16 @@
 <?php
 
+// Importo i file necessari
 require_once './traits/MovieDetails.php';
-
 require_once './models/Genre.php';
-
 require_once './models/Movie.php';
 
-// Creo dei generi
-$action = new Genre("Azione", "Film con scene d'azione e adrenalina");
-$comedy = new Genre("Commedia", "Film divertenti e leggeri");
-$drama = new Genre("Drammatico", "Film con trame serie e profonde");
-
-
-// Creo due film con dettagli aggiuntivi
-$movie1 = new Movie("Die Hard", 1988, [$action, $drama], "John McTiernan");
-$movie1->setMovieDetails(8.2, 28);
-
-$movie2 = new Movie("La vita è bella", 1997, $comedy, "Roberto Benigni");
-$movie2->setMovieDetails(8.6, 20);
-
-// // Stampo le informazioni dei film
-// echo $movie1->getInfo() . "<br>";
-// echo $movie2->getInfo();
+// Importo i dati dal database
+$db = require_once './db/db.php';
+$movies = $db['movies'];
+$genres = $db['genres'];
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +25,7 @@ $movie2->setMovieDetails(8.6, 20);
     <h1>I Nostri Film</h1>
 
     <div class="movie-grid">
-        <?php foreach ([$movie1, $movie2] as $movie): ?>
+        <?php foreach ($movies as $movie): ?>
             <div class="movie-card">
                 <h2 class="movie-title"><?php echo $movie->title; ?></h2>
                 <div class="movie-info">

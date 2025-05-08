@@ -2,7 +2,7 @@
 
 // Definisco la classe Genre
 class Genre {
-    // Definisco la classe Genre con le proprietà name e description
+    // Definisco le proprietà name e description per la classe Genre
     public $name;
     public $description;
 
